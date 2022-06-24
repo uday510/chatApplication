@@ -45,8 +45,12 @@ io.on('connection', (socket) => {
      * Let's send message to the client after 5 seconds of connection
      */
     setTimeout(() => {
-        socket.send(`Sent a message from server after 5 seconds of user connected`);
+        // socket.send(`Sent a message from server after 5 seconds of user connected`);
+        socket.emit('newEvent', {message: "Sent a message from server after 5 seconds of user connected"});
     }, 5000);
+    socket.on('clientEvent', (message) => {
+        console.log(message);
+    })
     socket.on('disconnect', () => {
         console.log(`User is disconnected.`);
     });

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head> Hello World!
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,9 +8,10 @@
     <script src="/socket.io/socket.io.js"></script>
     <script>
         const socket = io();
-        socket.on('message', function(data) {
-            document.write(data);
-        });
+        // socket.on('newEvent', function(data) {
+        //     document.write(data.message);
+        // });
+        socket.emit('clientEvent', 'Hello Server, from the client')
     </script>
 </head>
 <body></body>
