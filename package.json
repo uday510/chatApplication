@@ -1,0 +1,23 @@
+{
+  "name": "chatapplication",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uday510/chatApplication.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/uday510/chatApplication/issues"
+  },
+  "homepage": "https://github.com/uday510/chatApplication#readme",
+  "dependencies": {
+    "socket.io": "^4.5.1"
+  }
+}
