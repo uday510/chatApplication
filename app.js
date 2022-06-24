@@ -34,30 +34,47 @@ app.get("/", (req, res) => {
  * ? d. reconnect
  */
 
+ var clients = 0; //This will keep track of number of clients.
 /**
  * Writing code to react when some client connects
  */
 
 io.on('connection', (socket) => {
-    console.log(`A User connected to the server.`);
+    console.log(`client ${++clients} connected to the server.`);
 
     /**
-     * Let's send message to the client after 5 seconds of connection
+     *? Let's send message to the client after 5 seconds of connection
      */
-    setTimeout(() => {
+    // setTimeout(() => {
         // socket.send(`Sent a message from server after 5 seconds of user connected`);
-        socket.emit('newEvent', {message: "Sent a message from server after 5 seconds of user connected"});
-    }, 5000);
-    socket.on('clientEvent', (message) => {
-        console.log(message);
-    })
+    //     socket.emit('newEvent', {message: "Sent a message from server after 5 seconds of user connected"});
+    // }, 5000);
+
+    // socket.on('clientEvent', (message) => {
+    //     console.log(message);
+    // });
+
+    /**
+     *? Every time client joins, let's broadcast the total
+     *? number of clients to all the clients.
+     */
+    io.sockets.emit('broadcast', {
+        description: `${clients} client/s connected.`
+    }, console.log(`${clients} client/s connected.`));
+
     socket.on('disconnect', () => {
-        console.log(`User is disconnected.`);
+        console.log(`client ${clients} disconnected.`)
+        io.sockets.emit('broadcast', {
+            description: `client ${clients--} disconnected.`
+        });
+        io.sockets.emit('broadcast', {
+            description: `${clients} client/s connected.`
+        });
     });
 });
 
 /**
- * Starting the http server
+ *! Starting the http server
  */
 
 http.listen(serverConfig.PORT, hostname, () => {

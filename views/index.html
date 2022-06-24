@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head> Hello World!
+<head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,13 @@
         // socket.on('newEvent', function(data) {
         //     document.write(data.message);
         // });
-        socket.emit('clientEvent', 'Hello Server, from the client')
+        socket.on('broadcast', function(data) {
+            document.write(data.description);
+        });
+        socket.on('disconnect', function(data) {
+            document.write(data.description);
+        });
+        // socket.emit('clientEvent', 'Hello Server, from the client')
     </script>
 </head>
 <body></body>
